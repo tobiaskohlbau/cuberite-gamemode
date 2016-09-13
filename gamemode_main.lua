@@ -18,8 +18,10 @@ end
 
 function OnEntityChangedWorld(Entity, World)
   if Entity:IsPlayer() then
-    local world = Entity:GetWorld()
-    Entity:SetGameMode(world:GetGameMode())
-    Entity:SendMessage(cChatColor.Yellow .. "Your gamemode has been updated to match world!")
+    local gamemode = Entity:GetWorld():GetGameMode()
+    if Entity:GetGameMode() ~= gamemode then
+      Entity:SetGameMode(gamemode)
+      Entity:SendMessage(cChatColor.Yellow .. "Your gamemode has been updated to match world!")
+    end
   end
 end
